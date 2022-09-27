@@ -1,11 +1,37 @@
 package P1EX2;
+import java.util.List;
 
-public class Curriculos implements Impressao{
+public class Curriculos extends Arquivo {
     String pessoa;
-    String habilidades[];
+    List<String> habilidadesList;
 
-    public Curriculos(String pessoa, String[] habilidades) {
+    public Curriculos(String doc, String pessoa, List<String>  habilidadesList) {
+        super(doc);
         this.pessoa = pessoa;
-        this.habilidades = habilidades;
+        this.habilidadesList= habilidadesList;
     }
+
+    public String getPessoa() {
+        return pessoa;
+    }
+
+    public List<String> getHabilidadesList() {
+        return habilidadesList;
+    }
+
+    public void setPessoa(String pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public void setHabilidadesList(List<String> habilidadesList) {
+        this.habilidadesList = habilidadesList;
+    }
+
+    @Override
+    public String toString() {
+        return  "Curriculo {" +
+                "Habilidades=" +  habilidadesList +
+                ", Pessoa='" + pessoa + '\'' + '}';
+    }
+
 }
