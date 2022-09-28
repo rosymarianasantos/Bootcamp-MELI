@@ -31,6 +31,7 @@ public class Fatura {
     public double getTotal() {
         this.total = 0;
         for(Item i: ListaItens) {
+            System.out.println(i);
             total+=i.getCustoUni()*i.getQuant();
         }
         return total;
@@ -43,9 +44,9 @@ public class Fatura {
     @Override
     public String toString() {
         return "Fatura{" +
-                "pessoa=" + pessoa +
+                "pessoa=" + pessoa.getNome() +
                 ", ListaItens=" + ListaItens +
-                ", total=" + total +
+                ", total=" + getTotal() +
                 '}';
     }
 }
