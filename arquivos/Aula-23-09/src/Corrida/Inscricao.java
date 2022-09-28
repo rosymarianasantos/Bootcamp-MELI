@@ -29,7 +29,7 @@ public class Inscricao {
         int categoria = scanner.nextInt();
         System.out.print("Idade: ");
         int idade = scanner.nextInt();
-        
+
               return new Participante(rg, nome, sobrenome, telefone, emergencia, grupoSanguineo, categoria, idade);
 
           }
