@@ -1,5 +1,6 @@
 package DAKAR;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Corrida {
@@ -9,12 +10,17 @@ public class Corrida {
     int numVeiculos;
     List<Veiculo> veiculoList;
 
-    public Corrida(double distancia, double premio, String nome, int numVeiculos, List<Veiculo> veiculoList) {
+    private SalvaMoto socorroMoto;
+    private Auto socorroCarro;
+
+    public Corrida(double distancia, double premio, String nome, int numVeiculos) {
         this.distancia = distancia;
         this.premio = premio;
         this.nome = nome;
         this.numVeiculos = numVeiculos;
-        this.veiculoList = veiculoList;
+
+        this.socorroCarro = new Auto();
+        this.veiculoList = new ArrayList<>();
     }
 
     public double getDistancia() {
@@ -62,6 +68,12 @@ public class Corrida {
         }
     }
 
+    public void mostrarCarros() {
+        for(Veiculo v: veiculoList) {
+            System.out.println(v);
+        }
+    }
+
     public void addMoto(Moto moto) {
         if(numVeiculos > veiculoList.size()) {
             veiculoList.add(moto);
@@ -83,4 +95,23 @@ public class Corrida {
         return veiculo.getAceleracao()*1/2*veiculo.getAceleracao()/(veiculo.getAngulo()*(veiculo.getPeso() - veiculo.getRodas()*100));
     }
 
+    public void socorroCarro(String placa) {
+        for(Veiculo vec: veiculoList) {
+            if(vec.getPlaca().equals(placa) && vec instanceof Carros) {
+                socorroCarro.SocorristaCarro((Carros) vec);
+                return;
+            }
+        }
+        System.out.println("NENHUM CARRO COM ESTA PLACA NA CORRIDA!!!!");
+    }
+
+    public void socorroMoto(String placa) {
+        for(Veiculo vec: veiculoList) {
+            if(vec.getPlaca().equals(placa) && vec instanceof Moto) {
+                socorroMoto.SocorristaMoto((Moto) vec);
+                return;
+            }
+        }
+        System.out.println("NENHUM CARRO COM ESTA PLACA NA CORRIDA!!!!");
+    }
 }
