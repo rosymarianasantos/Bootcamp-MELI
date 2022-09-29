@@ -79,8 +79,8 @@ public class Corrida {
         }
     }
 
-    public void Vencedor(Veiculo veiculo) {
-        return veiculo.getAceleracao()*1/2*veiculo.getAceleracao()/(veiculo.getAngulo()*(veiculo.getPeso() - veiculo.getRodas()*100))/
+    public double Vencedor(Veiculo veiculo) {
+        return veiculo.getAceleracao()*1/2*veiculo.getAceleracao()/(veiculo.getAngulo()*(veiculo.getPeso() - veiculo.getRodas()*100));
     }
 
 }
