@@ -1,0 +1,143 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2636
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab560
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f0\fs26 \cf0 GET _cluster/health\
+\
+GET _nodes/stats\
+\
+#criar um novo indice (BD)\
+PUT comidas_preferidas\
+\
+#listar os indices existentes\
+GET _cat/indices\
+\
+#listar os indices existentes\
+GET _cat/indices?v=true\
+\
+#inserir um novo docuemnto, gerando um novo ID\
+POST comidas_preferidas/_doc\
+\{\
+  "nome": "Bruna",\
+  "comida": "pizza"\
+\}\
+\
+#buscar um documento pelo ID \
+GET comidas_preferidas/_doc/ck9w9oMBm2l8gM4G-TjP\
+\
+#cria um novo documento, com um ID fornecido\
+PUT comidas_preferidas/_doc/1\
+\{\
+   "nome": "Anderson",\
+  "comida": "moqueca de camarao"\
+\}\
+\
+#atualiza o conteudo, caso o indice ja exista\
+PUT comidas_preferidas/_doc/1\
+\{\
+   "nome": "Carolina",\
+  "comida": "japonesa"\
+\}\
+\
+GET comidas_preferidas/_doc/1\
+\
+#Inserir um novo documento, sem permitir o update\
+PUT comidas_preferidas/_create/2\
+\{\
+   "nome": "Gabriel",\
+  "comida": "shawarma"\
+\}\
+\
+GET comidas_preferidas/_doc/2\
+\
+PUT comidas_preferidas/_create/3\
+\{\
+   "nome": "Hugo",\
+  "comida": "Hamburger"\
+\}\
+\
+#atualiza um documento (coloca so o campo que vai atualizar)\
+POST comidas_preferidas/_update/3\
+\{\
+  "doc": \{\
+  "comida": "salada" \
+  \}\
+\}\
+\
+#listar os documentos de um indice\
+GET comidas_preferidas/_search\
+\
+#configura o indice indicando uma unica replica\
+PUT comidas_preferidas/_settings\
+\{\
+  "index": \{\
+    "number_of_replicas": 0\
+  \}\
+\}\
+\
+GET comidas_preferidas/_search\
+\{\
+  "query": \{\
+    "match": \{\
+      "comida":"pizza"\
+    \}\
+  \}\
+\}\
+\
+#Crie um \'edndice chamado destinos (BD)\
+PUT destinos\
+\
+#Escolha alguns destinos de viagem dos sonhos. Para cada destino, indexe um documento contendo o nome e o pa\'eds.\
+\
+POST destinos/_doc/1\
+\{\
+  "nome": "Diney",\
+  "pa\'eds": "Estados Unidos"\
+\}\
+\
+POST destinos/_doc/2\
+\{\
+  "nome": "Estatua Amy",\
+  "pa\'eds": "Inglaterra"\
+\}\
+#o post gera automatico o indice, diferente do put\
+#o create acusa se tiver indice repetido, dirente do POST\
+PUT destinos/_create/3\
+\{\
+  "nome": "Porto de galinhas",\
+  "pa\'eds": "Brasil"\
+\}\
+\
+#Leia (GET) cada documento para verificar o conte\'fado do documento.\
+GET destinos/_doc/1\
+GET destinos/_doc/2\
+\
+#Atualizar um campo de um documento.\
+POST destinos/_update/2\
+\{\
+  "doc": \{\
+  "nome": "Estatua Amy Winehouse"\
+  \}\
+\}\
+\
+#Leia (GET) o documento atualizado para garantir que o campo foi atualizado.\
+GET destinos/_doc/2\
+\
+#Excluir um documento de um lugar.\
+DELETE destinos/_doc/c0-o9oMBm2l8gM4GRDhN\
+DELETE destinos/_doc/dE-o9oMBm2l8gM4GVzhP\
+\
+#Liste todos os documentos do \'edndice de destinos.\
+GET destinos/_search\
+\
+#outra forma de fazer\
+GET destinos/_search\
+\{\
+  "query":\{\
+    "match_all":\{\}\
+  \}\
+\}}
