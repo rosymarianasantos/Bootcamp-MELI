@@ -3,11 +3,13 @@ package br.dh.meli.QABugs.controller;
 import br.dh.meli.QABugs.model.TestCase;
 import br.dh.meli.QABugs.service.TestCaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.GeneratedValue;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -35,7 +37,7 @@ public class TestCaseController {
     }
 
     @GetMapping("/data")
-    public ResponseEntity<List<TestCase>> findByDate(@RequestParam String last_update) {
+    public ResponseEntity<List<TestCase>> findByDate(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date last_update) {
         List<TestCase> testCaseList = service.findByDate(last_update);
         return new ResponseEntity<>(testCaseList, HttpStatus.OK);
     }

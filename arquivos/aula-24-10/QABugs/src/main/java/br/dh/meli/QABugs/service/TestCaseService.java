@@ -33,23 +33,10 @@ public class TestCaseService {
         return optionalTestCase.orElse(null);
     }
 
-    public List<TestCase> findByDate(String data) {
-        System.out.println(data);
-        List<TestCase> list = repo.findAll();
-        System.out.println(list);
+    public List<TestCase> findByDate(Date data) {
+        List<TestCase> testCaseList = repo.findTestCaseByLastUpdateGreaterThanEqual(data);
 
-
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
-        Date data5 = new Date(data);
-        Date data2 = formato.parse(data5.toString());
-        //LocalDateTime dataHora = LocalDateTime.parse(data, formato);
-       // String formatado = dataHora.format(novo);
-        //System.out.println(formato.format(data2));
-
-        System.out.println(data2);
-
-        List<TestCase> newTestCase = list.stream().filter(testCase -> (testCase.getLast_update().toString()).equals(data2)).collect(Collectors.toList());
-        return newTestCase;
+        return testCaseList;
     }
 
     public TestCase created(TestCase testCase) {
@@ -63,7 +50,7 @@ public class TestCaseService {
 
         updateTestCase.setDescription(testCase.getDescription());
         updateTestCase.setTested(testCase.isTested());
-        updateTestCase.setLast_update(testCase.getLast_update());
+        updateTestCase.setLastUpdate(testCase.getLastUpdate());
         updateTestCase.setPassed(testCase.isPassed());
         updateTestCase.setNumber_of_tries(testCase.getNumber_of_tries());
 

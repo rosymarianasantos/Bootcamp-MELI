@@ -26,7 +26,7 @@ public class TestCase {
     private int number_of_tries;
 
     @Column(nullable = false)
-    private Date last_update;
+    private Date lastUpdate;
 
     @Override
     public String toString() {
@@ -36,7 +36,7 @@ public class TestCase {
                 ", tested=" + tested +
                 ", passed=" + passed +
                 ", number_of_tries=" + number_of_tries +
-                ", last_update=" + last_update +
+                ", last_update=" + lastUpdate +
                 '}';
     }
 }
