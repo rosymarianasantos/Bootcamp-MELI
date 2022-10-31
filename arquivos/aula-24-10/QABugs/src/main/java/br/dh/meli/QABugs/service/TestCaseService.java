@@ -2,22 +2,14 @@ package br.dh.meli.QABugs.service;
 
 import br.dh.meli.QABugs.model.TestCase;
 import br.dh.meli.QABugs.repository.TestCaseRepo;
-import net.bytebuddy.build.Plugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
+
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
+
 
 @Service
 public class TestCaseService {
