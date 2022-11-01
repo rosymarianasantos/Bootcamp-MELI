@@ -10,6 +10,5 @@ public interface IActorService {
    // Actors findById(Long id);
     List<Actors> findByMovieFavorite();
     List<Actors> findByRating(BigDecimal rating);
-
     List<Actors> getActorByMovie(String title);
 }

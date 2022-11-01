@@ -53,4 +53,12 @@ public class Actors {
     )
     private Set<Movies> movies;
 
+    @ManyToMany
+    @JsonIgnoreProperties("actors")
+    @JoinTable(name = "actor_episode",
+            joinColumns = @JoinColumn(name = "actor_id"),
+            inverseJoinColumns = @JoinColumn(name = "episode_id")
+    )
+    private Set<Episodes> episodes;
+
 }

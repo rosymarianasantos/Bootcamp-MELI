@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -17,12 +16,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "genres")
-public class Genres {
+@Table(name = "series")
+public class Series {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private Long id;
+
     @JsonIgnore
     @Column(name = "created_at")
     private Timestamp createdAt;
@@ -31,16 +31,28 @@ public class Genres {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "ranking")
-    private BigDecimal ranking;
+    @JsonIgnore
+    @Column(name = "release_date")
+    private Timestamp releaseDate;
 
-    @Column(name = "active")
-    private byte active;
+    @JsonIgnore
+    @Column(name = "end_date")
+    private Timestamp endDate;
 
-    @OneToMany(mappedBy="genres", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("genres")
-    private List<Movies> movies;
+    @Column(name = "genreId")
+    private Long genreId;
+
+//
+//    @ManyToOne
+//    @JoinColumn(name = "serie_id", insertable = false, updatable = false)
+//    @JsonIgnoreProperties("series")
+//    private Seasons seasons;
+
+    @OneToMany(mappedBy="series", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("series")
+    private List<Seasons> seasons;
+
 }
