@@ -3,7 +3,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-/Users/osysantos/Documents/GitHub/Bootcamp-MELI/arquivos/aula-25-10/HQL2/src/main/resources/application.properties
+
+src/main/resources/application.properties
 
 ### STS ###
 .apt_generated
